@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import "./app.css";
+import pizzaData from "../public/pizzaData.js";
 
 function Header() {
   return (
@@ -13,18 +14,11 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our menu</h2>
-      <Pizza
-        name="Focaccia"
-        ingredient="Bread with italian olive oil and rosemary"
-        photo="/pizzas/focaccia.jpg"
-        price={8}
-      />
-      <Pizza
-        name="Pizza Margherita"
-        ingredient="Tomato and mozarella"
-        photo="/pizzas/margherita.jpg"
-        price={10}
-      />
+      <div>
+        {pizzaData.map((pizza) => (
+          <Pizza key={pizza.index} pizzaObj={pizza} />
+        ))}
+      </div>
     </main>
   );
 }
@@ -32,11 +26,11 @@ function Menu() {
 function Pizza(props) {
   return (
     <div className="pizza">
-      <img src={props.photo} />
+      <img src={props.pizzaObj.photo} />
       <div>
-        <h3>{props.name}</h3>
-        <p>{props.ingredient}</p>
-        <span>{props.price}</span>
+        <h3>{props.pizzaObj.name}</h3>
+        <p>{props.pizzaObj.ingredient}</p>
+        <span>{props.pizzaObj.price}</span>
       </div>
     </div>
   );
